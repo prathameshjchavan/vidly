@@ -7,7 +7,7 @@
 		"test": "tests"
 	},
 	"scripts": {
-		"test": "jest"
+		"test": "jest --watchAll --verbose --detectOpenHandles"
 	},
 	"keywords": [],
 	"author": "",
@@ -27,6 +27,7 @@
 		"winston-mongodb": "^5.0.7"
 	},
 	"devDependencies": {
-		"jest": "^28.0.3"
+		"jest": "^28.0.3",
+		"supertest": "^6.2.3"
 	}
 }
