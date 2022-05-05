@@ -7,7 +7,8 @@
 		"test": "tests_exercise"
 	},
 	"scripts": {
-		"test": "jest --watchAll --verbose --detectOpenHandles --runInBand --coverage"
+		"test": "jest --watchAll --verbose --detectOpenHandles --runInBand --coverage",
+		"test:genres": "jest --watchAll --verbose --detectOpenHandles --runInBand tests/integration/routes/genres.test.js"
 	},
 	"keywords": [],
 	"author": "",
