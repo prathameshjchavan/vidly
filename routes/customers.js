@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 
 	if (customers.length === 0) return res.status(404).send("No customers found");
 
-	res.status(200).send(customers);
+	res.send(customers);
 });
 
 // Get cutomer by id
@@ -21,7 +21,7 @@ router.get("/:id", async (req, res) => {
 			.status(404)
 			.send("The customer with the given ID was not found.");
 
-	res.status(200).send(customer);
+	res.send(customer);
 });
 
 // Create a customer
@@ -42,7 +42,7 @@ router.put("/:id", validate(validateCustomer), async (req, res) => {
 			.status(404)
 			.send("The customer with the given ID was not found.");
 
-	res.status(200).send(customer);
+	res.send(customer);
 });
 
 // Delete a customer
@@ -54,7 +54,7 @@ router.delete("/:id", async (req, res) => {
 			.status(404)
 			.send("The customer with the given ID was not found.");
 
-	res.status(200).send(result);
+	res.send(result);
 });
 
 module.exports = router;

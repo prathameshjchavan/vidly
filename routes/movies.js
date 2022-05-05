@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
 
 	if (movies.length === 0) return res.status(404).send("No Movies Found");
 
-	res.status(200).send(movies);
+	res.send(movies);
 });
 
 // Get a movie by id
@@ -20,7 +20,7 @@ router.get("/:id", async (req, res) => {
 	if (!movie)
 		return res.status(404).send("The movie with the given ID was not found.");
 
-	res.status(200).send(movie);
+	res.send(movie);
 });
 
 // Create a movie
@@ -60,7 +60,7 @@ router.put("/:id", validate(validateMovie), async (req, res) => {
 	if (!movie)
 		return res.status(404).send("The movie with the given ID was not found.");
 
-	res.status(200).send(movie);
+	res.send(movie);
 });
 
 // Delete a movie
@@ -70,7 +70,7 @@ router.delete("/:id", async (req, res) => {
 	if (!result)
 		return res.status(404).send("The movie with the given ID was not found.");
 
-	res.status(200).send(result);
+	res.send(result);
 });
 
 module.exports = router;

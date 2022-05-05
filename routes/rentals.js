@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 
 	if (!rentals) return res.status(404).send("No rentals found");
 
-	res.status(200).send(rentals);
+	res.send(rentals);
 });
 
 router.post("/", validate(validateRental), async (req, res) => {
