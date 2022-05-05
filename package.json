@@ -7,8 +7,9 @@
 		"test": "tests_exercise"
 	},
 	"scripts": {
-		"test": "jest --watchAll --verbose --detectOpenHandles --runInBand --coverage",
-		"test:genres": "jest --watchAll --verbose --detectOpenHandles --runInBand tests/integration/routes/genres.test.js"
+		"test": "jest --watchAll --verbose --runInBand --coverage",
+		"test:genres": "jest --watchAll --verbose --runInBand tests/integration/routes/genres.test.js",
+		"test:rentals": "jest --watchAll --verbose --runInBand tests/integration/routes/rentals.test.js"
 	},
 	"keywords": [],
 	"author": "",
@@ -23,6 +24,7 @@
 		"joi-objectid": "^4.0.2",
 		"jsonwebtoken": "^8.5.1",
 		"lodash": "^4.17.21",
+		"moment": "^2.29.3",
 		"mongoose": "^6.3.1",
 		"winston": "^3.7.2",
 		"winston-mongodb": "^5.0.7"

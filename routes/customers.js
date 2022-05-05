@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { Customer, validate } = require("../models/customer");
+const validate = require("../middlewares/validate");
+const { Customer, validate: validateCustomer } = require("../models/customer");
 
 // Get all the customers
 router.get("/", async (req, res) => {
@@ -24,26 +25,14 @@ router.get("/:id", async (req, res) => {
 });
 
 // Create a customer
-router.post("/", async (req, res) => {
-	const { error } = validate(req.body);
-	if (error) {
-		const errorMessage = error.details.map((err) => err.message).join("\n");
-		return res.status(400).send(errorMessage);
-	}
-
+router.post("/", validate(validateCustomer), async (req, res) => {
 	const customer = new Customer(req.body);
 	await customer.save();
 	res.status(201).send(customer);
 });
 
 // Modify a customer
-router.put("/:id", async (req, res) => {
-	const { error } = validate(req.body);
-	if (error) {
-		const errorMessage = error.details.map((err) => err.message).join("\n");
-		return res.status(400).send(errorMessage);
-	}
-
+router.put("/:id", validate(validateCustomer), async (req, res) => {
 	const customer = await Customer.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
 	});

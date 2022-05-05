@@ -1,8 +1,9 @@
-const { Rental, validate } = require("../models/rental");
+const { Rental, validate: validateRental } = require("../models/rental");
 const { Movie } = require("../models/movie");
 const { Customer } = require("../models/customer");
 const express = require("express");
 const Fawn = require("fawn");
+const validate = require("../middlewares/validate");
 const router = express.Router();
 
 Fawn.init("mongodb://localhost/vidly");
@@ -16,13 +17,7 @@ router.get("/", async (req, res) => {
 	res.status(200).send(rentals);
 });
 
-router.post("/", async (req, res) => {
-	const { error } = validate(req.body);
-	if (error) {
-		const errorMessage = error.details.map((err) => err.message).join("\n");
-		return res.status(400).send(errorMessage);
-	}
-
+router.post("/", validate(validateRental), async (req, res) => {
 	const { customerId, movieId } = req.body;
 
 	const customer = await Customer.findById(customerId);

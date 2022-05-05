@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { Movie, validate } = require("../models/movie");
+const { Movie, validate: validateMovie } = require("../models/movie");
 const { Genre } = require("../models/genre");
+const validate = require("../middlewares/validate");
 
 // Get all movies
 router.get("/", async (req, res) => {
@@ -23,13 +24,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // Create a movie
-router.post("/", async (req, res) => {
-	const { error } = validate(req.body);
-	if (error) {
-		const errorMessage = error.details.map((err) => err.message).join("\n");
-		return res.status(400).send(errorMessage);
-	}
-
+router.post("/", validate(validateMovie), async (req, res) => {
 	const { title, genreId, numberInStock, dailyRentalRate } = req.body;
 
 	const genre = await Genre.findById(genreId).select("_id name");
@@ -46,13 +41,7 @@ router.post("/", async (req, res) => {
 });
 
 // Modify a movie
-router.put("/:id", async (req, res) => {
-	const { error } = validate(req.body);
-	if (error) {
-		const errorMessage = error.details.map((err) => err.message).join("\n");
-		return res.status(400).send(errorMessage);
-	}
-
+router.put("/:id", validate(validateMovie), async (req, res) => {
 	const { title, genreId, numberInStock, dailyRentalRate } = req.body;
 
 	const genre = await Genre.findById(genreId).select("_id name");
