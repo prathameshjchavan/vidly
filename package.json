@@ -7,19 +7,25 @@
 		"test": "tests_exercise"
 	},
 	"scripts": {
+		"start": "node index.js",
 		"test": "jest --watchAll --verbose --runInBand --coverage",
 		"test:genres": "jest --watchAll --verbose --runInBand tests/integration/routes/genres.test.js",
 		"test:rentals": "jest --watchAll --verbose --runInBand tests/integration/routes/rentals.test.js"
+	},
+	"engines": {
+		"node": "16.14.2"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
 		"bcrypt": "^5.0.1",
+		"compression": "^1.7.4",
 		"dotenv": "^16.0.0",
 		"express": "^4.18.0",
 		"express-async-errors": "^3.1.1",
 		"fawn": "^2.1.5",
+		"helmet": "^5.0.2",
 		"joi": "^17.6.0",
 		"joi-objectid": "^4.0.2",
 		"jsonwebtoken": "^8.5.1",
