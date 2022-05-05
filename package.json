@@ -4,10 +4,10 @@
 	"description": "",
 	"main": "index.js",
 	"directories": {
-		"test": "tests"
+		"test": "tests_exercise"
 	},
 	"scripts": {
-		"test": "jest --watchAll --verbose --detectOpenHandles"
+		"test": "jest --watchAll --verbose --detectOpenHandles --runInBand"
 	},
 	"keywords": [],
 	"author": "",
